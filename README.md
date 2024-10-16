@@ -1,40 +1,40 @@
 # Holochain-Kangaroo Electron
 
-Put your Holochain App in this Kangaroo's electron pouch and let it run.
+> PREREQUISITE: [Install and package Visible-Verication]([https://developer.holochain.org/docs/install/](https://github.com/Visible-Verification/visver)).
 
-This repository let's you easily convert your Holochain app into a standalone, electron-based cross-platform Desktop app.
+# Instructions to create a build of Visible Verification using Kangaroo-electron
 
-**Note:** Support for non-breaking updates to happ coordinator zomes is currently not built into the kangaroo.
-
-**Holochain Version**: Kangaroo Electron currently uses holochain 0.3.3.
-
-# Instructions
-
-## Setup and Testing Locally
-
-1. Either use this repository as a template (by clicking on the green "Use this template" button) or fork it.
-Using it as a template allows you to start with a clean git history and the contributors of this repository won't show up as contributors to your new repository. **Forking has the advantage of being able to relatively easily pull in updates from this parent repository at a later point in time.** If you fork it, it may be smart to work off a different branch than the main branch in your forked repository in order to be able to keep the main branch in sync with this parent repository and selectively merge into your working branch as needed.
-
-2. In your local copy of the repository, run
+1. Inside your terminal, clone this repo
 
 ```
-yarn setup
+git clone https://github.com/Visible-Verification/kangaroo-build.git
 ```
 
-3. In the `kangaroo.config.ts` file, replace the `appId` and `productName` fields with names appropriate for your own app.
+2. Change directory into it
 
-4. Paste the `.webhapp` file of your holochain app into the `pouch` folder.
-**Note**: The kangaroo expects a 1024x1024 pixel `icon.png` at the root level of your webhapp's UI assets.
-
-5. To test it, run
 ```
-yarn dev
+cd kangaroo-build
 ```
 
-## Build the Distributable
+3. Setup and Install dependencies
 
-### Build locally
-To build the app locally for your platform, run the build command for your respecive platform:
+```
+npm setup
+npm install
+```
+
+4. Add the .webhapp file to the kangaroo pouch
+- Open up kangaroo-build repo in your file explorer
+- Drag the packaged `visible-verification.webhapp` file from the Visible-Verification repo into the `pouch` directory. 
+The `visible-verification.webhapp` file should be located in `/workdir` of the visible-verifacation repo 
+
+5. To test the build locally, run:
+
+```
+npm run dev
+```
+
+6. To build the app locally for your platform, run the build command for your respecive platform:
 
 ```
 yarn build:linux
@@ -45,28 +45,19 @@ yarn build:mac
 # or
 yarn build:windows
 ```
-### Build on CI for all platforms
 
-The general workflow goes as follows:
+# Getting latest changes:
 
-1. Create a draft release on github and set its "Tag verion" to the value of the `version` field that you chose in `kangaroo.config.ts` and prefix it with `v`, for example `v0.1.0`.
+To retreive the latest version of kangaroo-build run:
 
-2. Merge the main branch into the release branch and push it to github to trigger the release workflow.
-
-If you do this for the first time you will need to create the `release` branch first:
 ```
-git checkout -b release
-git merge main
-git push --set-upstream origin release
+git pull
+npm install
 ```
 
-For subsequent releases after that you can run
-```
-git checkout release
-git merge main
-git push
-```
 
+
+# Details for Blue
 
 ## Code Signing
 

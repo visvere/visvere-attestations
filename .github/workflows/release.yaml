@@ -51,13 +51,13 @@ jobs:
           yarn setup
 
       # This step is only used for testing in the official kangaroo repo
-      - name: Overwrite Names for release testing and fetch kando webhapp from github
-        if: ${{ github.repository }} == 'holochain-apps/holochain-kangaroo-electron'
-        run: |
-          echo ${{ github.repository }}
-          echo "overwriting names for release testing"
-          curl -f -L --output ./pouch/presence.webhapp https://github.com/matthme/presence/releases/download/0.7.3/presence.webhapp
-          node ./scripts/overwrite-with-test-name.js
+      #   - name: Overwrite Names for release testing and fetch kando webhapp from github
+      #     if: ${{ github.repository }} == 'holochain-apps/holochain-kangaroo-electron'
+      #     run: |
+      #       echo ${{ github.repository }}
+      #       echo "overwriting names for release testing"
+      #       curl -f -L --output ./pouch/presence.webhapp https://github.com/matthme/presence/releases/download/0.7.3/presence.webhapp
+      #       node ./scripts/overwrite-with-test-name.js
 
       - name: Retrieve appId
         run: |
@@ -140,7 +140,6 @@ jobs:
           node ./scripts/extend-deb-postinst.mjs
           gh release upload "v${{ steps.version.outputs.APP_VERSION }}" "latest-linux.yml" --clobber
           gh release upload "v${{ steps.version.outputs.APP_VERSION }}" "dist/${{ steps.appId.outputs.APP_ID }}_${{ steps.version.outputs.APP_VERSION }}_amd64.deb" --clobber
-
 
       # Windows
       #---------------------------------------------------------------------------------------

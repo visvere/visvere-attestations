@@ -19,12 +19,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup for macOS code signing
-        if: matrix.platform == 'macos-12' || matrix.platform == 'macos-latest'
-        uses: matthme/import-codesign-certs@5565bb656f60c98c8fc515f3444dd8db73545dc2
-        with:
-          p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
-          p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+      # - name: Setup for macOS code signing
+      #   if: matrix.platform == 'macos-12' || matrix.platform == 'macos-latest'
+      #   uses: matthme/import-codesign-certs@5565bb656f60c98c8fc515f3444dd8db73545dc2
+      #   with:
+      #     p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
+      #     p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
 
       - name: setup node
         uses: actions/setup-node@v1

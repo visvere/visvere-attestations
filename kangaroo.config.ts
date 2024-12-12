@@ -1,9 +1,9 @@
-import { defineConfig } from "./src/main/defineConfig";
+import { defineConfig } from './src/main/defineConfig'
 
 export default defineConfig({
-  appId: "org.holochain.kangaroo-electron",
-  productName: "Holochain Kangaroo Electron",
-  version: "0.1.0",
+  appId: 'org.visible.verification',
+  productName: 'Visible Verification',
+  version: '0.1.0',
   macOSCodeSigning: false,
   windowsEVCodeSigning: false,
   fallbackToIndexHtml: true,
@@ -22,17 +22,17 @@ export default defineConfig({
       },
     },
     lair: {
-      version: "0.5.2",
+      version: '0.5.3',
       sha256: {
-        "x86_64-unknown-linux-gnu":
-          "5fa1b2ece8896208c313c01b531d99d861e156de8f2d2ddc2709a82bc2533550",
-        "x86_64-pc-windows-msvc.exe":
-          "42a4a6eaf3cd1cb52bdc6512b392e874467bc6d7f5763b89a303767a9d979ad9",
-        "x86_64-apple-darwin":
-          "22cadfb73435ce0c97e6581123b4fc3fe9ff0a5ef5b04eed3b4895a84f5cbb79",
-        "aarch64-apple-darwin":
-          "246bb1090e9e875babe056df413f75ad8dd1ba4971f293dd5e94ea05ea364aa0",
+        'x86_64-unknown-linux-gnu':
+          '5fa1b2ece8896208c313c01b531d99d861e156de8f2d2ddc2709a82bc2533550',
+        'x86_64-pc-windows-msvc.exe':
+          '68b6453a19921072aac04dae52a4e94e725e7482005d2f54f907aec680e078de',
+        'x86_64-apple-darwin':
+          '22cadfb73435ce0c97e6581123b4fc3fe9ff0a5ef5b04eed3b4895a84f5cbb79',
+        'aarch64-apple-darwin':
+          '246bb1090e9e875babe056df413f75ad8dd1ba4971f293dd5e94ea05ea364aa0',
       },
     },
   },
-});
+})

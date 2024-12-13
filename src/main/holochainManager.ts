@@ -191,24 +191,24 @@ export class HolochainManager {
     }
     console.log(`Installing happ...`)
     const pubKey = await this.adminWebsocket.generateAgentPubKey()
-    const appInfo = await this.adminWebsocket.installApp({
+    await this.adminWebsocket.installApp({
       agent_key: pubKey,
       installed_app_id: HAPP_APP_ID,
       path: HAPP_PATH,
       network_seed: networkSeed,
     })
-    try {
-      await this.adminWebsocket.enableApp({
-        installed_app_id: appInfo.installed_app_id,
-      })
-      const installedApps = await this.adminWebsocket.listApps({})
-      this.installedApps = installedApps
-      this.kangarooEmitter.emitHappInstalled()
-    } catch (e) {
-      throw new Error(
-        `Failed to enable appstore: ${e}.\nIf you encounter this in dev mode your local bootstrap server may not be running or at a different port than the one specified.`
-      )
-    }
+    // try {
+    //   await this.adminWebsocket.enableApp({
+    //     installed_app_id: appInfo.installed_app_id,
+    //   })
+    //   const installedApps = await this.adminWebsocket.listApps({})
+    //   this.installedApps = installedApps
+    //   this.kangarooEmitter.emitHappInstalled()
+    // } catch (e) {
+    //   throw new Error(
+    //     `Failed to enable appstore: ${e}.\nIf you encounter this in dev mode your local bootstrap server may not be running or at a different port than the one specified.`
+    //   )
+    // }
   }
 
   async getAppToken(): Promise<AppAuthenticationToken> {

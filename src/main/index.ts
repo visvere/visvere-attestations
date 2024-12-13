@@ -181,7 +181,7 @@ app.whenReady().then(async () => {
   )
 
   // Install happ if necessary
-  // await HOLOCHAIN_MANAGER.installHappIfNecessary()
+  await HOLOCHAIN_MANAGER.installHappIfNecessary()
 
   console.log('Happ installed.')
 

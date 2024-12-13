@@ -160,7 +160,19 @@ export const createHappWindow = async (
 export function setLinkOpenHandlers(browserWindow: BrowserWindow): void {
   const allowedDomains = [
     'stripe.com',
-    // Add other trusted domains here
+    'm.stripe.network',
+    'stripe.network',
+    'stripe-js.com',
+    'stripecdn.com',
+    'checkout.stripe.com',
+    'js.stripe.com',
+    'hooks.stripe.com',
+    'm.stripe.com',
+    'q.stripe.com',
+    'dashboard.stripe.com',
+    'connect.stripe.com',
+    'newassets.hcaptcha.com',
+    'hcaptcha.com',
   ]
 
   // links should open in the system default application

@@ -1,9 +1,9 @@
 import { defineConfig } from './src/main/defineConfig'
 
 export default defineConfig({
-  appId: 'org.visible.verification',
-  productName: 'Visible Verification',
-  version: '0.0.1',
+  appId: "org.visible-verification",
+  productName: "Visible Verification",
+  version: "0.0.1",
   macOSCodeSigning: false,
   windowsEVCodeSigning: false,
   fallbackToIndexHtml: true,

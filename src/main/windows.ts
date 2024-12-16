@@ -156,55 +156,78 @@ export const createHappWindow = async (
 };
 
 export function setLinkOpenHandlers(browserWindow: BrowserWindow): void {
+  const allowedDomains = [
+    'stripe.com',
+    'm.stripe.network',
+    'stripe.network',
+    'stripe-js.com',
+    'stripecdn.com',
+    'checkout.stripe.com',
+    'js.stripe.com',
+    'hooks.stripe.com',
+    'm.stripe.com',
+    'q.stripe.com',
+    'dashboard.stripe.com',
+    'connect.stripe.com',
+    'newassets.hcaptcha.com',
+    'hcaptcha.com',
+  ]
+
   // links should open in the system default application
   // instead of the webview
-  browserWindow.webContents.on("will-navigate", (e) => {
+  browserWindow.webContents.on('will-navigate', (e) => {
     if (
-      e.url.startsWith("http://localhost") ||
-      e.url.startsWith("http://127.0.0.1")
+      e.url.startsWith('http://localhost') ||
+      e.url.startsWith('http://127.0.0.1')
     ) {
       // ignore dev server reload
-      return;
+      return
     }
     if (
-      e.url.startsWith("http://") ||
-      e.url.startsWith("https://") ||
-      e.url.startsWith("mailto://")
+      e.url.startsWith('http://') ||
+      e.url.startsWith('https://') ||
+      e.url.startsWith('mailto://')
     ) {
-      e.preventDefault();
-      shell.openExternal(e.url);
+      e.preventDefault()
+      shell.openExternal(e.url)
     }
-  });
+  })
 
-  browserWindow.webContents.on("will-frame-navigate", (e) => {
+  browserWindow.webContents.on('will-frame-navigate', (e) => {
     if (
-      e.url.startsWith("http://localhost") ||
-      e.url.startsWith("http://127.0.0.1")
+      e.url.startsWith('http://localhost') ||
+      e.url.startsWith('http://127.0.0.1')
     ) {
       // ignore dev server reload
-      return;
+      return
     }
+
+    const url = new URL(e.url)
+    if (allowedDomains.some((domain) => url.hostname.endsWith(domain))) {
+      return
+    }
+
     if (
-      e.url.startsWith("http://") ||
-      e.url.startsWith("https://") ||
-      e.url.startsWith("mailto://")
+      e.url.startsWith('http://') ||
+      e.url.startsWith('https://') ||
+      e.url.startsWith('mailto://')
     ) {
-      e.preventDefault();
-      shell.openExternal(e.url);
+      e.preventDefault()
+      shell.openExternal(e.url)
     }
-  });
+  })
 
   // Links with target=_blank should open in the system default browser and
   // happ windows are not allowed to spawn new electron windows
   browserWindow.webContents.setWindowOpenHandler((details) => {
     if (
-      details.url.startsWith("http://") ||
-      details.url.startsWith("https://")
+      details.url.startsWith('http://') ||
+      details.url.startsWith('https://')
     ) {
-      shell.openExternal(details.url);
+      shell.openExternal(details.url)
     }
-    return { action: "deny" };
-  });
+    return { action: 'deny' }
+  })
 }
 
 export const createSplashWindow = (): BrowserWindow => {

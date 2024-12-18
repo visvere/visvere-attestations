@@ -152,12 +152,14 @@ app.whenReady().then(async () => {
     )
   }
 
-  const [LAIR_HANDLE, lairUrl] = await launchLairKeystore(
+  const [handle, lairUrl] = await launchLairKeystore(
     LAIR_BINARY,
     KANGAROO_FILESYSTEM.keystoreDir,
     KANGAROO_EMITTER,
     LAIR_PASSWORD
   )
+
+  LAIR_HANDLE = handle
 
   ZOME_CALL_SIGNER = await ZomeCallSigner.connect(lairUrl, LAIR_PASSWORD)
 

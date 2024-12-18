@@ -134,6 +134,7 @@ export class HolochainManager {
           )
         }
         if (line.includes('Conductor ready.')) {
+          console.log('Should be connecting to admin websocket....')
           const adminWebsocket = await AdminWebsocket.connect({
             url: new URL(`ws://127.0.0.1:${adminPort}`),
             wsClientOptions: {
@@ -196,7 +197,7 @@ export class HolochainManager {
       installed_app_id: HAPP_APP_ID,
       path: HAPP_PATH,
       network_seed: networkSeed,
-    });
+    })
     // try {
     //   await this.adminWebsocket.enableApp({
     //     installed_app_id: appInfo.installed_app_id,

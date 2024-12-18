@@ -145,14 +145,14 @@ app.whenReady().then(async () => {
     )
     console.log('lair keystore initialized.')
   }
-  if (SPLASH_SCREEN_WINDOW)
+  if (SPLASH_SCREEN_WINDOW) {
     SPLASH_SCREEN_WINDOW.webContents.send(
       'loading-progress-update',
       'Starting lair keystore...'
     )
+  }
 
-  let lairUrl
-  ;[LAIR_HANDLE, lairUrl] = await launchLairKeystore(
+  const [LAIR_HANDLE, lairUrl] = await launchLairKeystore(
     LAIR_BINARY,
     KANGAROO_FILESYSTEM.keystoreDir,
     KANGAROO_EMITTER,

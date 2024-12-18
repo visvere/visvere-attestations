@@ -179,7 +179,7 @@ export class HolochainManager {
   }
 
   async installHappIfNecessary(networkSeed?: string) {
-    const installedApps = await this.adminWebsocket.listApps({})
+    let installedApps = await this.adminWebsocket.listApps({})
     if (
       installedApps
         .map((appInfo) => appInfo.installed_app_id)
@@ -200,13 +200,19 @@ export class HolochainManager {
       path: HAPP_PATH,
       network_seed: networkSeed,
     })
+
+    installedApps = await this.adminWebsocket.listApps({})
+
+    this.installedApps = installedApps
+    this.kangarooEmitter.emitHappInstalled()
     // try {
     //   await this.adminWebsocket.enableApp({
     //     installed_app_id: appInfo.installed_app_id,
     //   });
-    //   const installedApps = await this.adminWebsocket.listApps({});
-    //   this.installedApps = installedApps;
-    //   this.kangarooEmitter.emitHappInstalled();
+    // installedApps = await this.adminWebsocket.listApps({})
+
+    // this.installedApps = installedApps
+    // this.kangarooEmitter.emitHappInstalled()
     // } catch (e) {
     //   throw new Error(
     //     `Failed to enable appstore: ${e}.\nIf you encounter this in dev mode your local bootstrap server may not be running or at a different port than the one specified.`

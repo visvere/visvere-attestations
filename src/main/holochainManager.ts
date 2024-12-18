@@ -67,6 +67,8 @@ export class HolochainManager {
       ? parseInt(process.env.ADMIN_PORT, 10)
       : await getPort()
 
+    console.log('adminPort is', adminPort)
+
     const conductorConfig = rustUtils.defaultConductorConfig(
       adminPort,
       rootDir,

@@ -167,6 +167,8 @@ app.whenReady().then(async () => {
       'Starting Holochain...'
     )
 
+  console.log('Launching Holochain manager...')
+
   HOLOCHAIN_MANAGER = await HolochainManager.launch(
     KANGAROO_EMITTER,
     KANGAROO_FILESYSTEM,
@@ -179,6 +181,8 @@ app.whenReady().then(async () => {
     DEFAULT_BOOTSTRAP_SERVER,
     DEFAULT_SIGNALING_SERVER
   )
+
+  console.log('Holochain manager launched.')
 
   // Install happ if necessary
   await HOLOCHAIN_MANAGER.installHappIfNecessary()

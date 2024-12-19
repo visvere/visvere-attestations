@@ -1,9 +1,9 @@
 import path from 'path';
 import fs from 'fs';
 import semver from 'semver';
+import { app } from 'electron';
 
 export type Profile = string;
-
 
 export class KangarooFileSystem {
   public appDataDir: string;
@@ -27,7 +27,7 @@ export class KangarooFileSystem {
 
   static connect(app: Electron.App, profile?: Profile, tempDir?: string) {
     profile = profile ? profile : 'default';
-    const versionString = breakingAppVersion(app);
+    const versionString = breakingAppVersion();
 
     const defaultLogsPath = app.getPath('logs');
     console.log('defaultLogsPath: ', defaultLogsPath);
@@ -54,7 +54,9 @@ export class KangarooFileSystem {
     createDirIfNotExists(configDir);
     createDirIfNotExists(dataDir);
 
-    console.log('Got logsDir, configDir and dataDir: ', logsDir, configDir, dataDir);
+    console.log('dataDir: ', dataDir);
+    console.log('logsDir:', logsDir);
+    console.log('configDir: ', configDir);
 
     const kangarooFs = new KangarooFileSystem(dataDir, configDir, logsDir);
 
@@ -76,15 +78,20 @@ function createDirIfNotExists(path: fs.PathLike) {
   }
 }
 
-
-export function breakingAppVersion(app: Electron.App): string {
+export function breakingAppVersion(): string {
   const version = app.getVersion();
+  return breakingVersion(version);
+}
+
+export function breakingVersion(version: string): string {
   if (!semver.valid(version)) {
     throw new Error('App has an invalid version number.');
   }
   const prerelease = semver.prerelease(version);
   if (prerelease) {
-    return `${semver.major(version)}.${semver.minor(version)}.${semver.patch(version)}-${prerelease[0]}`;
+    return `${semver.major(version)}.${semver.minor(version)}.${semver.patch(version)}-${
+      prerelease[0]
+    }`;
   }
   switch (semver.major(version)) {
     case 0:

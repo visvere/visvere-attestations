@@ -1,6 +1,6 @@
 {
-  "name": "org.visible-verification",
-  "version": "0.0.2",
+  "name": "org.holochain.kangaroo-electron",
+  "version": "0.1.0",
   "license": "CAL-1.0",
   "main": "./out/main/index.js",
   "scripts": {
@@ -23,15 +23,18 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
-    "@holochain/client": "0.18.0-rc.2",
+    "@holochain/client": "0.18.0-rc.1",
     "@holochain/hc-spin-rust-utils": "0.400.0-rc.1",
     "@lightningrodlabs/we-rust-utils": "0.400.0-rc.1",
+    "@matthme/electron-updater": "6.3.0-alpha.1",
     "@msgpack/msgpack": "^2.8.0",
     "adm-zip": "0.5.14",
     "bufferutil": "4.0.8",
+    "commander": "12.1.0",
     "electron-context-menu": "3.6.1",
     "get-port": "7.0.0",
     "nanoid": "5.0.4",
+    "semver": "^7.6.2",
     "split": "1.0.1",
     "utf-8-validate": "^6.0.3",
     "winston": "3.11.0"

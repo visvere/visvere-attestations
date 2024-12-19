@@ -138,8 +138,24 @@ export const createHappWindow = async (
 
   return happWindow;
 };
-
 export function setLinkOpenHandlers(browserWindow: BrowserWindow): void {
+  const allowedDomains = [
+    'stripe.com',
+    'm.stripe.network',
+    'stripe.network',
+    'stripe-js.com',
+    'stripecdn.com',
+    'checkout.stripe.com',
+    'js.stripe.com',
+    'hooks.stripe.com',
+    'm.stripe.com',
+    'q.stripe.com',
+    'dashboard.stripe.com',
+    'connect.stripe.com',
+    'newassets.hcaptcha.com',
+    'hcaptcha.com',
+  ];
+
   // links should open in the system default application
   // instead of the webview
   browserWindow.webContents.on('will-navigate', (e) => {
@@ -162,6 +178,12 @@ export function setLinkOpenHandlers(browserWindow: BrowserWindow): void {
       // ignore dev server reload
       return;
     }
+
+    const url = new URL(e.url);
+    if (allowedDomains.some((domain) => url.hostname.endsWith(domain))) {
+      return;
+    }
+
     if (
       e.url.startsWith('http://') ||
       e.url.startsWith('https://') ||

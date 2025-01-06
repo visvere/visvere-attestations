@@ -1,9 +1,9 @@
 import { defineConfig } from './src/main/defineConfig';
 
 export default defineConfig({
-  appId: 'org.visible-verification',
-  productName: 'Visible Verification',
-  version: '0.0.3',
+  appId: 'org.visvere-attestations',
+  productName: 'Visvere Attestations',
+  version: '0.0.4',
   macOSCodeSigning: false,
   windowsEVCodeSigning: false,
   fallbackToIndexHtml: true,

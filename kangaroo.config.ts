@@ -2,7 +2,7 @@ import { defineConfig } from './src/main/defineConfig';
 
 export default defineConfig({
   appId: 'org.visvere',
-  productName: 'Visible Verification',
+  productName: 'Visvere',
   version: '0.0.4',
   macOSCodeSigning: false,
   windowsEVCodeSigning: false,

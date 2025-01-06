@@ -91,7 +91,7 @@ export function validateArgs(args: CliOpts): RunOptions {
 }
 
 function defaultAppNetworkSeed() {
-  let networkSeed = `${KANGAROO_CONFIG.productName}-${breakingAppVersion()}`;
+  let networkSeed = `visvere-network-${breakingAppVersion()}`;
   if (!app.isPackaged) {
     networkSeed += '-dev';
   }

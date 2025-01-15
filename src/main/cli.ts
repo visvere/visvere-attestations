@@ -71,6 +71,8 @@ export function validateArgs(args: CliOpts): RunOptions {
   // If provided take the one provided, otherwise check whether it's applet dev mode
   const networkSeed = args.networkSeed ? args.networkSeed : defaultAppNetworkSeed();
 
+  console.log(networkSeed);
+
   const bootstrapUrl = args.bootstrapUrl ? new URL(args.bootstrapUrl) : undefined;
   const signalingUrl = args.signalingUrl ? new URL(args.signalingUrl) : undefined;
 

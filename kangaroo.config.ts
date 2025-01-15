@@ -8,6 +8,8 @@ export default defineConfig({
   windowsEVCodeSigning: false,
   fallbackToIndexHtml: true,
   autoUpdates: true,
+  systray: true,
+  passwordMode: 'no-password',
   bins: {
     holochain: {
       version: '0.4.0-rc.0',

@@ -1,3 +1,4 @@
+import { KANGAROO_CONFIG } from './const';
 import { breakingAppVersion } from './filesystem';
 import { app } from 'electron';
 
@@ -98,3 +99,4 @@ function defaultAppNetworkSeed() {
   }
   return networkSeed;
 }
+
